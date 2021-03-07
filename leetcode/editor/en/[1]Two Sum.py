@@ -43,9 +43,9 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
-from typing import List
+from typing import List, Dict
 
-
+# Brute Force
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for idx1, num1 in enumerate(nums):
@@ -53,6 +53,18 @@ class Solution:
                 idx2 = temp_idx2 + idx1 + 1
                 if num1 + num2 == target:
                     return [idx1, idx2]
+
+# One-pass Hash Table
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        numdict: Dict[int, int] = dict()
+        for idx, num in enumerate(nums):
+            complement = target - num
+            if complement in numdict:
+                return [numdict[complement], idx]
+
+            numdict[num] = idx
+
 
         
 # leetcode submit region end(Prohibit modification and deletion)
